@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: News CRUD API
+  description: API para gerenciar notícias
+  version: 1.0.0
+servers:
+  - url: http://localhost:3333
+paths:
+  /news:
+    get:
+      summary: Listar todas as notícias
+      responses:
+        '200':
+          description: Lista de notícias
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notice'
+    post:
+      summary: Criar uma nova notícia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - body
+                - author
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                author:
+                  type: string
+      responses:
+        '201':
+          description: Notícia criada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notice'
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /news/{id}:
+    get:
+      summary: Obter uma notícia por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da notícia
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Notícia encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notice'
+        '404':
+          description: Notícia não encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    put:
+      summary: Atualizar uma notícia existente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da notícia
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - body
+                - author
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                author:
+                  type: string
+      responses:
+        '200':
+          description: Notícia atualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notice'
+        '404':
+          description: Notícia não encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    delete:
+      summary: Deletar uma notícia por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da notícia
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Notícia deletada
+        '404':
+          description: Notícia não encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+components:
+  schemas:
+    Notice:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
+        author:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
