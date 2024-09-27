@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+
+# Arquivos de build
+dist/
+
+# Logs
+*.log
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Arquivos de IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+*.db
