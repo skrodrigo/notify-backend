@@ -1,9 +1,7 @@
 import fastify from 'fastify'
+import { newsRoutes } from '../routes/news-routes'
 
 const app = fastify()
-
-app.get('/', async (request, reply) => {
-  return { hello: 'world' }
-})
+app.register(newsRoutes)
 
 app.listen({ port: 3333 }).then(() => console.log('server up!'))

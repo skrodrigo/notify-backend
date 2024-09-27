@@ -1,7 +1,7 @@
 import type { Notice } from '../models/notice-model'
 import { NewsRepository } from '../repositories/news-repository'
 
-export class ListTagsService {
+export class ListNewsService {
   private readonly newsRepository: NewsRepository
 
   constructor() {
