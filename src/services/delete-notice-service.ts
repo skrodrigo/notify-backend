@@ -1,17 +1,18 @@
-import { PrismaClient } from '@prisma/client'
-
+import { NewsRepository } from '../repositories/news-repository'
 export class DeleteNoticeService {
-  private prisma: PrismaClient = new PrismaClient()
+  private readonly newsRepository: NewsRepository
+
+  constructor() {
+    this.newsRepository = new NewsRepository()
+  }
 
   public async execute(id: number): Promise<boolean> {
-    try {
-      await this.prisma.notice.delete({
-        where: { id },
-      })
-      return true
-    } catch (error) {
-      console.error('Error deleting notice:', error)
+    const notice = await this.newsRepository.getById(id)
+    if (!notice) {
       return false
     }
+
+    await this.newsRepository.delete(id)
+    return true
   }
 }

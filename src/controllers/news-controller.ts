@@ -41,7 +41,7 @@ export class NewsController {
     const { id } = request.params as { id: number }
 
     try {
-      const notice = await this.listNoticeService.exec(id)
+      const notice = await this.listNoticeService.execute(id)
       return reply.send(notice)
     } catch (error) {
       return reply.status(404).send({ error: 'Notice not found' }) // Retornar mensagem mais específica
