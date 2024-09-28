@@ -8,7 +8,7 @@ export class ListNoticeService {
     this.newsRepository = new NewsRepository()
   }
 
-  public async exec(id: number): Promise<Notice> {
+  public async execute(id: number): Promise<Notice> {
     const notice = await this.newsRepository.getById(id)
     if (!notice) {
       throw new Error('Notice not found')

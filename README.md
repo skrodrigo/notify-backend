@@ -45,10 +45,6 @@ Esta é uma API para gerenciar notícias, permitindo criar, listar, atualizar e 
 - `PUT /news/:id`: Atualizar uma notícia existente
 - `DELETE /news/:id`: Deletar uma notícia por ID
 
-## Documentação
-
-A documentação da API está disponível em [http://localhost:3333/documentation](http://localhost:3333/documentation) após iniciar o servidor.
-
 ## Contribuição
 
 Sinta-se à vontade para abrir issues ou pull requests.
