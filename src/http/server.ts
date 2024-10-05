@@ -4,4 +4,7 @@ import { newsRoutes } from '../routes/news-routes'
 const app = fastify()
 app.register(newsRoutes)
 
-app.listen({ port: 3333 }).then(() => console.log('server up!'))
+const port = process.env.PORT || 3333
+app
+  .listen({ port: Number(port), host: '0.0.0.0' })
+  .then(() => console.log(`Servidor rodando na porta ${port}!`))

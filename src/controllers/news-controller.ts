@@ -38,18 +38,18 @@ export class NewsController {
   }
 
   public async getById(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.params as { id: number }
+    const { id } = request.params as { id: string }
 
     try {
-      const notice = await this.listNoticeService.execute(id)
+      const notice = await this.listNoticeService.execute(Number.parseInt(id))
       return reply.send(notice)
     } catch (error) {
-      return reply.status(404).send({ error: 'Notice not found' }) // Retornar mensagem mais específica
+      return reply.status(404).send({ error: 'Notice not found' })
     }
   }
 
   public async update(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.params as { id: number }
+    const { id } = request.params as { id: string }
     const { title, body, author } = request.body as {
       title: string
       body: string
@@ -58,7 +58,7 @@ export class NewsController {
 
     try {
       const updatedNotice = await this.updateNoticeService.execute(
-        id,
+        Number.parseInt(id),
         title,
         body,
         author
@@ -70,23 +70,25 @@ export class NewsController {
 
       return reply.send(updatedNotice)
     } catch (error) {
-      return reply.status(400).send({ error: (error as Error).message }) // Retornar mensagem apropriada
+      return reply.status(400).send({ error: (error as Error).message })
     }
   }
 
   public async delete(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.params as { id: number }
+    const { id } = request.params as { id: string }
 
     try {
-      const deleted = await this.deleteNoticeService.execute(id)
+      const deleted = await this.deleteNoticeService.execute(
+        Number.parseInt(id)
+      )
 
       if (!deleted) {
-        return reply.status(404).send({ error: 'Notice not found' }) // Usar 404 se o item não existir
+        return reply.status(404).send({ error: 'Notice not found' })
       }
 
       return reply.status(204).send()
     } catch (error) {
-      return reply.status(400).send({ error: (error as Error).message }) // Resposta clara para falhas no delete
+      return reply.status(400).send({ error: (error as Error).message })
     }
   }
 }
