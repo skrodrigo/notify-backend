@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:3333
+
+### Listar todas as tasks
+GET {{baseUrl}}/news
+
+### Obter detalhes de uma task específica
+GET {{baseUrl}}/news/4
+
+### Criar uma nova task
+POST {{baseUrl}}/news
+Content-Type: application/json
+
+{
+  "title": "string",
+  "body": "string",
+  "author": "string"
+}
+
+### Atualizar uma task existente
+PUT {{baseUrl}}/news/2
+Content-Type: application/json
+
+{
+  "title": "string2",
+  "body": "string2",
+  "author": "string2"
+}
+
+### Excluir uma task existente
+DELETE {{baseUrl}}/news/4
