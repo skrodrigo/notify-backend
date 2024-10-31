@@ -1,4 +1,4 @@
-import type { Notice } from '../models/notice-model'
+import type { Notice, NoticeCreate } from '../models/notice-model'
 import { NewsRepository } from '../repositories/news-repository'
 
 export class UpdateNoticeService {
@@ -9,22 +9,20 @@ export class UpdateNoticeService {
   }
 
   public async execute(
-    id: number,
-    title: string,
-    body: string,
-    author: string
+    id: string,
+    data: Partial<NoticeCreate>,
+    userId: string
   ): Promise<Notice | null> {
     const existingNotice = await this.newsRepository.getById(id)
+
     if (!existingNotice) {
       return null
     }
 
-    const updatedNotice = await this.newsRepository.update(
-      id,
-      title,
-      body,
-      author
-    )
-    return updatedNotice
+    if (existingNotice.userId !== userId) {
+      throw new Error('Unauthorized')
+    }
+
+    return this.newsRepository.update(id, data)
   }
 }

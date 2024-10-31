@@ -1,4 +1,4 @@
-import type { Notice } from '../models/notice-model'
+import type { Notice, NoticeCreate } from '../models/notice-model'
 import { NewsRepository } from '../repositories/news-repository'
 
 export class CreateNoticeService {
@@ -8,18 +8,12 @@ export class CreateNoticeService {
     this.newsRepository = new NewsRepository()
   }
 
-  public async execute(
-    title: string,
-    body: string,
-    author: string
-  ): Promise<Notice> {
-    if (!title || !body || !author) {
-      throw new Error(
-        'title, body and author are required for creating a notice'
-      )
+  public async execute(data: NoticeCreate): Promise<Notice> {
+    if (!data.title || !data.body || !data.author || !data.userId) {
+      throw new Error('Missing required fields')
     }
 
-    const notice = await this.newsRepository.create(title, body, author)
+    const notice = await this.newsRepository.create(data)
     return notice
   }
 }

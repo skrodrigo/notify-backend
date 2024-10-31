@@ -48,3 +48,23 @@ Esta é uma API para gerenciar notícias, permitindo criar, listar, atualizar e 
 ## Contribuição
 
 Sinta-se à vontade para abrir issues ou pull requests.
+
+## Swagger Documentation
+
+The current swagger.yml needs updates to include:
+- Authentication endpoints
+- Security schemes
+- Request/Response examples
+
+Here's a partial fix for the security scheme:
+```yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  
+security:
+  - bearerAuth: []
+```

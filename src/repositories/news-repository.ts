@@ -1,46 +1,73 @@
 import { PrismaClient } from '@prisma/client'
-import type { Notice } from '../models/notice-model'
+import type { Notice, NoticeCreate } from '../models/notice-model'
 
 export class NewsRepository {
   private prisma: PrismaClient = new PrismaClient()
 
   public async listAll(): Promise<Notice[]> {
-    const news = await this.prisma.notice.findMany()
-    return news
+    const news = await this.prisma.notice.findMany({
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+    })
+    return news as Notice[]
   }
 
-  public async getById(id: number): Promise<Notice | null> {
+  public async getById(id: string): Promise<Notice | null> {
     const news = await this.prisma.notice.findUnique({
       where: { id },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
     })
-    return news
+    return news as Notice | null
   }
 
-  public async create(
-    title: string,
-    body: string,
-    author: string
-  ): Promise<Notice> {
+  public async create(data: NoticeCreate): Promise<Notice> {
     const notice = await this.prisma.notice.create({
-      data: { title, body, author },
+      data,
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
     })
-    return notice
+    return notice as Notice
   }
 
   public async update(
-    id: number,
-    Newtitle: string,
-    Newbody: string,
-    Newauthor: string
+    id: string,
+    data: Partial<NoticeCreate>
   ): Promise<Notice | null> {
     const updatedNotice = await this.prisma.notice.update({
       where: { id },
-      data: { title: Newtitle, body: Newbody, author: Newauthor },
+      data,
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
     })
-    return updatedNotice
+    return updatedNotice as Notice
   }
 
-  public async delete(id: number): Promise<void> {
+  public async delete(id: string): Promise<void> {
     await this.prisma.notice.delete({
       where: { id },
     })
