@@ -19,28 +19,36 @@ Content-Type: application/json
 
 ### Save the accessToken and refreshToken from the response
 
+
+
+
 ### Create News (Protected Route)
 POST http://localhost:3333/news
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YjQzMWM4Yy1kZDM5LTQwMzAtYTYxMi1kNmZhZDE3NDRhZGEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzAzODYxODQsImV4cCI6MTczMDM4NzA4NH0.E98RMAIpMoHE82sbGNV0GylkmeAWJr7Iyzkwkje0Exs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMmQzZjZiMS0yMTliLTQzN2YtOTM4My0yNDRiZTA2MTZjODEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzA0MDA0NTksImV4cCI6MTczMDQwMTM1OX0.G-pBq2Fy2nPRHFfyPEw_wanUT6QeCGhW2Ck7ayisyR4
 
 {
-  "title": "Test News 2",
+  "title": "Test News 3",
   "body": "This is a test news article",
   "author": "Test Author",
   "imageUrl": "https://example.com/image.jpg"
 }
 
+
+
 ### List All News (Public Route)
 GET http://localhost:3333/news
 
 ### Get Single News (Public Route)
-GET http://localhost:3333/news/9a0db9e1-b99a-459e-b06a-8ddc3423b353
+GET http://localhost:3333/news/3c310120-f74f-4b78-b84b-9670745db3f6
+
+
+
 
 ### Update News (Protected Route)
-PUT http://localhost:3333/news/af7c84ae-810e-4f94-adc0-491a76f77245
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YjQzMWM4Yy1kZDM5LTQwMzAtYTYxMi1kNmZhZDE3NDRhZGEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzAzODI2OTcsImV4cCI6MTczMDM4MzU5N30.sQsueoam4eHDmvX0lO1-ztSh9QOwUAsMHwqkWlCR_mc
+PUT http://localhost:3333/news/3c310120-f74f-4b78-b84b-9670745db3f6
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMmQzZjZiMS0yMTliLTQzN2YtOTM4My0yNDRiZTA2MTZjODEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzA0MDA0NTksImV4cCI6MTczMDQwMTM1OX0.G-pBq2Fy2nPRHFfyPEw_wanUT6QeCGhW2Ck7ayisyR4
 
 {
   "title": "Updated Title",
@@ -48,6 +56,6 @@ Content-Type: application/json
 }
 
 ### Delete News (Protected Route)
-DELETE http://localhost:3333/news/af7c84ae-810e-4f94-adc0-491a76f77245
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YjQzMWM4Yy1kZDM5LTQwMzAtYTYxMi1kNmZhZDE3NDRhZGEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzAzODYxODQsImV4cCI6MTczMDM4NzA4NH0.E98RMAIpMoHE82sbGNV0GylkmeAWJr7Iyzkwkje0Exs
+DELETE http://localhost:3333/news/3c310120-f74f-4b78-b84b-9670745db3f6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMmQzZjZiMS0yMTliLTQzN2YtOTM4My0yNDRiZTA2MTZjODEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzA0MDA0NTksImV4cCI6MTczMDQwMTM1OX0.G-pBq2Fy2nPRHFfyPEw_wanUT6QeCGhW2Ck7ayisyR4
 
