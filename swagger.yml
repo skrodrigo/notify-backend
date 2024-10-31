@@ -167,3 +167,11 @@ components:
         createdAt:
           type: string
           format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
