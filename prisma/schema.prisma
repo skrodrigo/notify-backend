@@ -26,6 +26,9 @@ model Notice {
   userId    String
   user      User      @relation("UserNotices", fields: [userId], references: [id])
   createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
   
   @@map("news")
 }
@@ -37,6 +40,10 @@ model RefreshToken {
   user      User     @relation(fields: [userId], references: [id])
   expiresAt DateTime
   createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
 
   @@map("refresh_tokens")
 }
