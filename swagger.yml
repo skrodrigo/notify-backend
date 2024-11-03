@@ -151,6 +151,44 @@ paths:
                 properties:
                   error:
                     type: string
+  /presigned-url:
+    post:
+      summary: Generate presigned URL for image upload
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fileName
+                - fileSize
+                - contentType
+              properties:
+                fileName:
+                  type: string
+                fileSize:
+                  type: number
+                contentType:
+                  type: string
+      responses:
+        '200':
+          description: Upload URLs generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uploadUrl:
+                    type: string
+                  publicUrl:
+                    type: string
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
 components:
   schemas:
     Notice:

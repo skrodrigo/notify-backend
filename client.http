@@ -59,3 +59,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMmQzZ
 DELETE http://localhost:3333/news/3c310120-f74f-4b78-b84b-9670745db3f6
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMmQzZjZiMS0yMTliLTQzN2YtOTM4My0yNDRiZTA2MTZjODEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzA0MDA0NTksImV4cCI6MTczMDQwMTM1OX0.G-pBq2Fy2nPRHFfyPEw_wanUT6QeCGhW2Ck7ayisyR4
 
+### Generate Presigned URL (Protected Route)
+POST http://localhost:3333/presigned-url
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMmQzZjZiMS0yMTliLTQzN2YtOTM4My0yNDRiZTA2MTZjODEiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzA2NDgyNTMsImV4cCI6MTczMDY0OTE1M30.g-BBdcF1ly2Bna1b8_OXnMaqoyNvxGDXXXSHRqRhxZo 
+
+{
+  "fileName": "test-image.jpg",
+  "fileSize": 1048576,
+  "contentType": "image/jpeg"
+}
+

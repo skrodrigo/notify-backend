@@ -2,6 +2,7 @@ import jwt from '@fastify/jwt'
 import fastify, { type FastifyRequest, type FastifyReply } from 'fastify'
 import { authRoutes } from '../routes/auth-routes'
 import { newsRoutes } from '../routes/news-routes'
+import { uploadRoutes } from '../routes/upload-routes'
 
 declare module '@fastify/jwt' {
   interface FastifyJWT {
@@ -39,6 +40,7 @@ app.decorate(
 
 app.register(authRoutes)
 app.register(newsRoutes)
+app.register(uploadRoutes)
 
 const PORT = process.env.PORT ? Number.parseInt(process.env.PORT) : 3333
 const HOST = '0.0.0.0'

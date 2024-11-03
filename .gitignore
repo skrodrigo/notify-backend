@@ -1,6 +1,6 @@
 # Dependências
 node_modules/
-
+.cursorrules
 
 # Arquivos de build
 dist/
